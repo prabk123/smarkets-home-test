@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import CategoryInfo from "./CategoryInfo";
 import { connect } from "react-redux";
 import { Skeleton } from "antd";
-import { getEvents } from "../../actions/EventActions";
+import { getEvents, resetEvents } from "../../actions/EventActions";
 import Tile from "./Tile";
 import FeatureTile from "./FeatureTile";
 import { Link } from "react-router-dom";
@@ -11,6 +11,10 @@ import "./Main.css";
 class Main extends Component {
   componentDidMount() {
     this.props.getEvents();
+  }
+
+  componentWillUnmount() {
+    this.props.resetEvents();
   }
 
   render() {
@@ -63,4 +67,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getEvents })(Main);
+export default connect(mapStateToProps, { getEvents, resetEvents })(Main);

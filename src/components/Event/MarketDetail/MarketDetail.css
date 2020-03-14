@@ -1,0 +1,17 @@
+.market-panel {
+  background-color: #161616;
+  border-bottom: none !important;
+  border-radius: 4px;
+  border: none;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.market-panel-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.market-right-align {
+  text-align: end;
+}

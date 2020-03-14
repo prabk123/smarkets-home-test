@@ -3,11 +3,12 @@ import { Breadcrumb, Typography, Badge } from "antd";
 import { RightOutlined, CalendarFilled } from "@ant-design/icons";
 import Moment from "react-moment";
 import "./FeatureTile.css";
+import LeageBreadcrumb from "../../shared/LeagueBreadcrumb";
 
 const { Paragraph, Text } = Typography;
 
 const FeatureTile = props => {
-  const styles = { fontSize: 10, color: "#00b073", fontWeight: 700 };
+  const styles = { fontSize: 10 };
   const { image, event } = props;
   const { league, HOME, AWAY, start, state } = event;
   let date = null;
@@ -21,10 +22,7 @@ const FeatureTile = props => {
       <img className="eventList-feature-image" src={`https://${image}`} />
       <div className="eventList-feature-content">
         <div>
-          <Breadcrumb separator={<RightOutlined style={styles} />}>
-            <Breadcrumb.Item style={styles}>FOOTBALL</Breadcrumb.Item>
-            <Breadcrumb.Item style={styles}>{league}</Breadcrumb.Item>
-          </Breadcrumb>
+          <LeageBreadcrumb league={league} style={styles} />
           <div className="eventList-feature-title">
             <Paragraph className="eventList-feature-team">
               {HOME.name}

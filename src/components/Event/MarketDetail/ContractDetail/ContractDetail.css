@@ -1,0 +1,35 @@
+.contractDetail-root {
+  padding: 15px 0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+  align-items: center;
+}
+
+.contract-name {
+  font-size: 16px;
+  color: #fff;
+}
+
+.contract-perc {
+  font-size: 16px;
+  color: #fff;
+  font-weight: 900;
+}
+
+.contract-dec {
+  border-radius: 2px;
+  padding: 0 2px;
+  background-color: #a2a2a2;
+  color: #000;
+  margin-left: 10px;
+}
+
+.contract-prices {
+  text-align: end;
+}
+.contract-outcome {
+  text-align: end;
+  font-weight: 900;
+  color: #fff;
+}

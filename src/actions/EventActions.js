@@ -2,6 +2,8 @@ import axios from "axios";
 
 export const GET_EVENTS = "GET_EVENTS";
 export const GET_SINGLE_EVENT = "GET_SINGLE_EVENT";
+export const RESET_EVENTS = "RESET_EVENTS";
+export const RESET_SINGLE_EVENT = "RESET_SINGLE_EVENT";
 
 const config = {
   headers: {
@@ -14,8 +16,16 @@ const handleEvents = (data, image) => {
   return { type: GET_EVENTS, data, image };
 };
 
-const hanldeSingleEvent = id => {
-  return { type: GET_SINGLE_EVENT, id };
+const handleSingleEvent = event => {
+  return { type: GET_SINGLE_EVENT, event };
+};
+
+export const resetEvents = () => {
+  return { type: RESET_EVENTS, data: [], image: null };
+};
+
+export const resetSingleEvent = () => {
+  return { type: RESET_SINGLE_EVENT, event: null };
 };
 
 export const getEvents = () => {
@@ -133,12 +143,65 @@ export const getEvents = () => {
   };
 };
 
-// export const getSingleEvent = (eventId) => {
-//   return async dispatch => {
-//     try {
+export const getSingleEvent = eventId => {
+  return async dispatch => {
+    try {
+      const eventsData = await axios.get(`/v3/events/${eventId}/`, config);
+      let event = eventsData.data.events[0];
 
-//     } catch(err){
-//       console.log(err);
-//     }
-//   }
-// }
+      const eventStateData = await axios.get(`/v3/events/${eventId}/states/`);
+      const eventState = eventStateData.data.event_states[0];
+
+      event.state = eventState;
+
+      const marketsData = await axios.get(
+        `/v3/events/${eventId}/markets/?limit_by_event=5`,
+        config
+      );
+      const markets = marketsData.data.markets;
+
+      event.markets = markets;
+
+      const marketIds = event.markets.map(x => x.id);
+
+      const contractData = await axios.get(
+        `/v3/markets/${marketIds}/contracts/`,
+        config
+      );
+
+      let contracts = contractData.data.contracts;
+
+      const priceData = await axios.get(
+        `/v3/markets/${marketIds}/last_executed_prices/`,
+        config
+      );
+      const prices = priceData.data.last_executed_prices[markets[0].id];
+      prices.forEach(price => {
+        const idx = contracts.findIndex(x => x.id === price.contract_id);
+        if (idx >= 0) {
+          contracts[idx].percent = price.last_executed_price;
+          contracts[idx].decimal = (
+            100 / Number(price.last_executed_price)
+          ).toFixed(2);
+        }
+      });
+
+      event.markets.forEach(market => {
+        market.contracts = [];
+      });
+
+      contracts.forEach(contract => {
+        const idx = event.markets.findIndex(x => x.id === contract.market_id);
+        event.markets[idx].contracts.push(contract);
+      });
+
+      event.home = event.name.split(" vs ")[0];
+      event.away = event.name.split(" vs ")[1];
+      // console.log(event);
+
+      return dispatch(handleSingleEvent(event));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};

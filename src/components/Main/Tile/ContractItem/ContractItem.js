@@ -5,7 +5,6 @@ import "./ContractItem.css";
 const { Text } = Typography;
 
 const ContractItem = ({ item }) => {
-  console.log(item);
   return (
     <div>
       <Text className="tile-contract-name">{item.name}</Text>

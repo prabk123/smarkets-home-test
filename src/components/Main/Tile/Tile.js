@@ -1,13 +1,14 @@
 import React from "react";
-import { Breadcrumb, Typography, Row, Col, Badge, Divider } from "antd";
-import { RightOutlined, CalendarFilled } from "@ant-design/icons";
+import { Typography, Row, Col, Badge, Divider } from "antd";
+import { CalendarFilled } from "@ant-design/icons";
 import Moment from "react-moment";
 import ContractItem from "./ContractItem";
 import "./Tile.css";
+import LeageBreadcrumb from "../../shared/LeagueBreadcrumb";
 const { Paragraph } = Typography;
 
 const Tile = props => {
-  const styles = { fontSize: 9, color: "#00b073", fontWeight: 700 };
+  const styles = { fontSize: 9 };
   const divderStyles = { margin: "0px", marginTop: "7px" };
   const { league, HOME, AWAY, DRAW, start, state } = props.event;
   let date = null;
@@ -18,10 +19,7 @@ const Tile = props => {
   }
   return (
     <div className="tile tile-background">
-      <Breadcrumb separator={<RightOutlined style={styles} />}>
-        <Breadcrumb.Item style={styles}>FOOTBALL</Breadcrumb.Item>
-        <Breadcrumb.Item style={styles}>{league}</Breadcrumb.Item>
-      </Breadcrumb>
+      <LeageBreadcrumb league={league} style={styles} />
       <div className="tile-teams">
         <Paragraph className="tile-team">{HOME.name}</Paragraph>
         <Paragraph className="tile-team">{AWAY.name}</Paragraph>
