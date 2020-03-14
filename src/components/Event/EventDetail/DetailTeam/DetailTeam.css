@@ -1,0 +1,20 @@
+.eventDetail-team {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.eventDetail-team-name {
+  width: fit-content;
+  margin-bottom: 0 !important;
+}
+
+.eventDetail-team-score {
+  border-radius: 2px;
+  padding: 0 0.3em;
+  background-color: #a2a2a2;
+  color: #000;
+  font-size: 16px;
+  width: fit-content;
+  margin: 0 !important;
+}
