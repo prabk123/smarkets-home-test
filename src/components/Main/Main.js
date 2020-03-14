@@ -6,6 +6,8 @@ import { getEvents, resetEvents } from "../../actions/EventActions";
 import Tile from "./Tile";
 import FeatureTile from "./FeatureTile";
 import { Link } from "react-router-dom";
+import { notification } from "antd";
+import { CloseCircleOutlined } from "@ant-design/icons";
 import "./Main.css";
 
 class Main extends Component {
@@ -13,9 +15,29 @@ class Main extends Component {
     this.props.getEvents();
   }
 
+  componentDidUpdate() {
+    const { error } = this.props;
+    if (error) {
+      this.handleError();
+    }
+  }
+
   componentWillUnmount() {
     this.props.resetEvents();
   }
+
+  handleError = () => {
+    if (this.props.error) {
+      notification.open({
+        message: this.props.error.message,
+        duration: null,
+        style: {
+          backgroundColor: "#00b073"
+        },
+        icon: <CloseCircleOutlined style={{ backgroundColor: "#00b073" }} />
+      });
+    }
+  };
 
   render() {
     const { events, featuredImage } = this.props;
@@ -63,7 +85,8 @@ class Main extends Component {
 const mapStateToProps = state => {
   return {
     events: state.popularEvents,
-    featuredImage: state.featuredImage
+    featuredImage: state.featuredImage,
+    error: state.error
   };
 };
 

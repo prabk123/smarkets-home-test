@@ -4,14 +4,16 @@ import {
   RESET_EVENTS,
   RESET_SINGLE_EVENT
 } from "../actions/EventActions";
+import { ADD_ERROR, REMOVE_ERROR } from "../actions/ErrorActions";
 
-const initalState = {
+const DEFAULT_STATE = {
   popularEvents: [],
   featuredImage: null,
-  event: null
+  event: null,
+  error: null
 };
 
-const root = (state = initalState, action) => {
+const root = (state = DEFAULT_STATE, action) => {
   switch (action.type) {
     case GET_EVENTS:
       return {
@@ -34,6 +36,16 @@ const root = (state = initalState, action) => {
       return {
         ...state,
         event: action.event
+      };
+    case ADD_ERROR:
+      return {
+        ...state,
+        error: action.error
+      };
+    case REMOVE_ERROR:
+      return {
+        ...state,
+        error: null
       };
     default:
       return state;

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { addError, removeError } from "./ErrorActions";
 
 export const GET_EVENTS = "GET_EVENTS";
 export const GET_SINGLE_EVENT = "GET_SINGLE_EVENT";
@@ -136,9 +137,11 @@ export const getEvents = () => {
           "//marketing-static.smarkets.com/static/images/general/tiles/cat-football/cat-football-2--mj.jpg";
       }
       // Dispatch handler with data
-      return dispatch(handleEvents(data, image));
+      dispatch(handleEvents(data, image));
+      dispatch(removeError());
     } catch (err) {
       console.log(err);
+      dispatch(addError(err.error_type ? err.error_type : err));
     }
   };
 };
@@ -197,11 +200,12 @@ export const getSingleEvent = eventId => {
 
       event.home = event.name.split(" vs ")[0];
       event.away = event.name.split(" vs ")[1];
-      // console.log(event);
 
-      return dispatch(handleSingleEvent(event));
+      dispatch(handleSingleEvent(event));
+      dispatch(removeError());
     } catch (err) {
       console.log(err);
+      dispatch(addError(err.error_type ? err.error_type : err));
     }
   };
 };
