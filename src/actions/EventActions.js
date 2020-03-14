@@ -1,0 +1,134 @@
+import axios from "axios";
+
+export const GET_EVENTS = "GET_EVENTS";
+export const GET_SINGLE_EVENT = "GET_SINGLE_EVENT";
+
+const config = {
+  headers: {
+    "Access-Control-Allow-Origin": "*",
+    "Content-Type": "application/x-www-form-urlencoded"
+  }
+};
+
+const handleEvents = (data, image) => {
+  return { type: GET_EVENTS, data, image };
+};
+
+const hanldeSingleEvent = id => {
+  return { type: GET_SINGLE_EVENT, id };
+};
+
+export const getEvents = () => {
+  return async dispatch => {
+    try {
+      var data = [];
+      // Perfom all API calls & Organise data as required
+      const popularIds = await axios.get(
+        `/v3/popular/event_ids/sport/football/`,
+        config
+      );
+      const eventIds = popularIds.data.popular_event_ids.join(",");
+      const eventsData = await axios.get(`/v3/events/${eventIds}/`, config);
+      const events = eventsData.data.events;
+      events.forEach(event => {
+        const league = event.full_slug
+          .split("/")[3]
+          .split("-")
+          .join(" ")
+          .toUpperCase();
+        data.push({
+          id: event.id,
+          league: league,
+          start: event.start_datetime,
+          state: event.state,
+          name: event.name
+        });
+      });
+
+      const marketsData = await axios.get(
+        `/v3/events/${eventIds}/markets/?limit_by_event=1`,
+        config
+      );
+
+      const markets = marketsData.data.markets;
+      markets.forEach(market => {
+        const idx = data.findIndex(x => x.id === market.event_id);
+        if (idx >= 0) data[idx].marketId = market.id;
+      });
+
+      const fullTimeResults = markets.map(x => x.id);
+      const contractData = await axios.get(
+        `/v3/markets/${fullTimeResults}/contracts/`,
+        config
+      );
+
+      const contracts = contractData.data.contracts;
+      contracts.forEach(contract => {
+        const idx = data.findIndex(x => x.marketId === contract.market_id);
+        if (idx >= 0) {
+          data[idx][contract.contract_type.name] = {
+            name: contract.name,
+            id: contract.id
+          };
+        }
+      });
+
+      const priceData = await axios.get(
+        `/v3/markets/${fullTimeResults}/last_executed_prices/`,
+        config
+      );
+
+      const prices = priceData.data.last_executed_prices[fullTimeResults[0]];
+      prices.forEach(price => {
+        const idx = data.findIndex(
+          x =>
+            x.HOME.id === price.contract_id ||
+            x.DRAW.id === price.contract_id ||
+            x.AWAY.id === price.contract_id
+        );
+        if (idx >= 0) {
+          if (data[idx].HOME.id === price.contract_id) {
+            data[idx].HOME.percent = price.last_executed_price;
+            data[idx].HOME.decimal = (
+              100 / Number(price.last_executed_price)
+            ).toFixed(2);
+          }
+          if (data[idx].DRAW.id === price.contract_id) {
+            data[idx].DRAW.percent = price.last_executed_price;
+            data[idx].DRAW.decimal = (
+              100 / Number(price.last_executed_price)
+            ).toFixed(2);
+          }
+          if (data[idx].AWAY.id === price.contract_id) {
+            data[idx].AWAY.percent = price.last_executed_price;
+            data[idx].AWAY.decimal = (
+              100 / Number(price.last_executed_price)
+            ).toFixed(2);
+          }
+        }
+      });
+
+      const imageData = await axios.get(`/v3/tiles/`, config);
+      const imageArr = imageData.data.images.filter(
+        x =>
+          x.category ===
+          `.cat-football.cat-${data[0].league
+            .toLowerCase()
+            .split(" ")
+            .join("-")}`
+      );
+      console.log(imageData);
+      let image;
+      if (imageArr.length > 0) {
+        image = imageArr[0].url;
+      } else {
+        image =
+          "//marketing-static.smarkets.com/static/images/general/tiles/cat-football/cat-football-2--mj.jpg";
+      }
+      // Dispatch handler with data
+      return dispatch(handleEvents(data, image));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};

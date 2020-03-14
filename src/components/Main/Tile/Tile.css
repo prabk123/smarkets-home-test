@@ -1,0 +1,45 @@
+.tile {
+  border-radius: 2px;
+  color: unset;
+  display: flex;
+  flex-direction: column;
+  min-height: 131px;
+  padding: 5px 10px;
+  position: relative;
+  transition: background-color 0.5s;
+}
+
+.tile-background {
+  background-color: #161616;
+}
+.tile-background:hover {
+  background-color: #242424;
+}
+
+.tile:hover {
+  cursor: pointer;
+}
+
+.tile-team {
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tile-contract-name {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.75rem;
+}
+
+.tile-content {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

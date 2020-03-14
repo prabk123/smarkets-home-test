@@ -1,0 +1,16 @@
+.sideBar-root {
+  padding: 1.5em 1em;
+}
+
+.quicklinks-header {
+  color: #00b073;
+}
+
+.popularEvents-header {
+  font-weight: 700;
+  color: #fff;
+}
+
+.menuItem-root:hover {
+  cursor: pointer;
+}

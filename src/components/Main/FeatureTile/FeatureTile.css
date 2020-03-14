@@ -1,0 +1,66 @@
+.eventList-feature {
+  grid-row: span 3;
+  min-height: 413px;
+  overflow: hidden;
+  background-color: #161616;
+  border-radius: 2px;
+  color: unset;
+  display: flex;
+  flex-direction: column;
+  min-height: 131px;
+  padding: 5px 10px;
+  position: relative;
+  transition: background-color 0.5s;
+  cursor: pointer;
+}
+
+.eventList-feature-image {
+  content: " ";
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  pointer-events: none;
+  transition: transform 0.5s ease-out;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.eventList-feature:hover .eventList-feature-image {
+  transform: scale(1.1);
+  transition: transform 1s ease-out;
+}
+
+.eventList-feature-content {
+  z-index: 9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.eventList-feature-team {
+  font-weight: 700;
+  margin-bottom: 0 !important;
+  padding-bottom: 0;
+  font-size: 1.8em;
+  color: #fff;
+}
+
+.eventList-feature-contract {
+  margin-bottom: 0 !important;
+  padding-bottom: 0;
+  font-size: 1.2em;
+}
+.eventList-feature-percent {
+  font-weight: 700;
+  margin-bottom: 0 !important;
+  padding-bottom: 0;
+  font-size: 2em;
+  color: #fff;
+}

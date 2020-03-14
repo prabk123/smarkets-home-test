@@ -1,38 +1,57 @@
-.App {
-  text-align: center;
+@import "~antd/dist/antd.dark.css";
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap");
+
+body {
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 500;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  border-bottom: 1px solid #000;
+  background: #0d0d0d;
+  padding: 0 20px !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.layout {
+  margin-top: 60px;
+}
+
+.sider-left {
+  overflow: auto;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+}
+.sider-right {
+  overflow: auto;
+  height: 100vh;
+  position: fixed;
+  right: 0;
+}
+
+.content {
+  margin-left: 200px;
+  margin-right: 350px;
+}
+
+.container {
+  padding: 2em 1.5em;
+}
+/* // Medium devices (tablets, 768px and up) */
+@media (max-width: 992px) {
+  .sider-left {
+    display: none;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  .sider-right {
+    display: none;
   }
-  to {
-    transform: rotate(360deg);
+  .content {
+    margin-left: 1em;
+    margin-right: 1em;
   }
 }
