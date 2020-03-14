@@ -1,5 +1,6 @@
 import React from "react";
 import { Typography } from "antd";
+import { StarFilled } from "@ant-design/icons";
 import "./ContractDetail.css";
 
 const { Text } = Typography;
@@ -14,7 +15,14 @@ const ContractDetail = props => {
         {decimal ? <Text className="contract-dec">{decimal}</Text> : null}
       </div>
       <Text className="contract-outcome">
-        {outcome.charAt(0).toUpperCase() + outcome.slice(1)}
+        {outcome === "winner" ? (
+          <span className="winner">
+            <StarFilled className="winner-star" />
+            {outcome.toUpperCase()}
+          </span>
+        ) : (
+          outcome.toUpperCase()
+        )}
       </Text>
     </div>
   );

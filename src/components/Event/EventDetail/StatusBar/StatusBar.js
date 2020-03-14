@@ -27,7 +27,7 @@ const StatusBar = ({ status, start, clock, matchPeriod }) => {
           <div className="statusBar-status">
             <Badge status="success" text={status.toUpperCase()} />
           </div>
-          {status !== "ended" ? (
+          {status === "live" ? (
             <div className="statusBar-runtime">
               <ClockCircleOutlined className="statusBar-runtime-blue" />
               <Text className="statusBar-text statusBar-runtime-blue">
