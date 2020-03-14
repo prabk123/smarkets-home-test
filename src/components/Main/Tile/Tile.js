@@ -2,8 +2,9 @@ import React from "react";
 import { Breadcrumb, Typography, Row, Col, Badge, Divider } from "antd";
 import { RightOutlined, CalendarFilled } from "@ant-design/icons";
 import Moment from "react-moment";
+import ContractItem from "./ContractItem";
 import "./Tile.css";
-const { Paragraph, Text } = Typography;
+const { Paragraph } = Typography;
 
 const Tile = props => {
   const styles = { fontSize: 9, color: "#00b073", fontWeight: 700 };
@@ -27,31 +28,13 @@ const Tile = props => {
       </div>
       <Row>
         <Col span={8} className="tile-content">
-          <Text className="tile-contract-name">{HOME.name}</Text>
-          <Text className="tile-price-perc">
-            {HOME.percent ? `${HOME.percent}%` : "-"}
-          </Text>
-          {HOME.decimal ? (
-            <Text className="tile-price-dec">{HOME.decimal}</Text>
-          ) : null}
+          <ContractItem item={HOME} />
         </Col>
         <Col span={8} className="tile-content">
-          <Text className="tile-contract-name">{DRAW.name}</Text>
-          <Text className="tile-price-perc">
-            {DRAW.percent ? `${DRAW.percent}%` : "-"}
-          </Text>
-          {DRAW.decimal ? (
-            <Text className="tile-price-dec">{DRAW.decimal}</Text>
-          ) : null}
+          <ContractItem item={DRAW} />
         </Col>
         <Col span={8} className="tile-content">
-          <Text className="tile-contract-name">{AWAY.name}</Text>
-          <Text className="tile-price-perc">
-            {AWAY.percent ? `${AWAY.percent}%` : "-"}
-          </Text>
-          {AWAY.decimal ? (
-            <Text className="tile-price-dec">{AWAY.decimal}</Text>
-          ) : null}
+          <ContractItem item={AWAY} />
         </Col>
       </Row>
       <Divider style={divderStyles} />

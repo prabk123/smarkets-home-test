@@ -30,14 +30,6 @@
   white-space: nowrap;
 }
 
-.tile-contract-name {
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-size: 0.75rem;
-}
-
 .tile-content {
   overflow: hidden;
   text-overflow: ellipsis;

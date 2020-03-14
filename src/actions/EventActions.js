@@ -132,3 +132,13 @@ export const getEvents = () => {
     }
   };
 };
+
+// export const getSingleEvent = (eventId) => {
+//   return async dispatch => {
+//     try {
+
+//     } catch(err){
+//       console.log(err);
+//     }
+//   }
+// }
