@@ -9,6 +9,7 @@ import FeatureTile from "./FeatureTile";
 import { Link } from "react-router-dom";
 import { notification } from "antd";
 import { CloseCircleOutlined } from "@ant-design/icons";
+import PropTypes from "prop-types";
 import "./Main.css";
 
 class Main extends Component {
@@ -89,6 +90,25 @@ class Main extends Component {
     );
   }
 }
+
+Main.propTypes = {
+  featuredImage: PropTypes.string,
+  error: PropTypes.shape({
+    status: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    message: PropTypes.string
+  }),
+  events: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string
+    })
+  ),
+  getEvents: PropTypes.func,
+  resetEvents: PropTypes.func,
+  removeError: PropTypes.func,
+  match: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
+};
 
 const mapStateToProps = state => {
   return {

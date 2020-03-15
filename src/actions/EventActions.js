@@ -128,7 +128,6 @@ export const getEvents = () => {
             .split(" ")
             .join("-")}`
       );
-      console.log(imageData);
       let image;
       if (imageArr.length > 0) {
         image = imageArr[0].url;
