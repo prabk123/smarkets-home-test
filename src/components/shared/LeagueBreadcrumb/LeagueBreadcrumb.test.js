@@ -12,10 +12,12 @@ const setUp = (props = {}) => {
 describe("Breadcrumb Component", () => {
   describe("Has Props", () => {
     let component;
+    let func;
     beforeEach(() => {
+      func = jest.fn();
       const props = {
         history: {
-          push: () => {}
+          push: func
         },
         match: { test: "test" },
         location: { test: "test" },
@@ -33,6 +35,13 @@ describe("Breadcrumb Component", () => {
     it("Should render two breadcrumb items", () => {
       const wrapper = findByTestAtrr(component, "breadcrumbItem");
       expect(wrapper.length).toBe(2);
+    });
+
+    it("Should emit a callback on click event", () => {
+      const button = findByTestAtrr(component, "breadcrumbItem");
+      button.at(0).simulate("click");
+      const callback = func.mock.calls.length;
+      expect(callback).toBe(1);
     });
   });
 
