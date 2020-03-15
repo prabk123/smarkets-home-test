@@ -1,10 +1,11 @@
 import React from "react";
 import { Typography, Skeleton } from "antd";
+import PropTypes from "prop-types";
 import "./DetailTeam.css";
 
 const { Title } = Typography;
 
-const DeatilTeam = ({ name, winning, score }) => {
+const DetailTeam = ({ name, winning, score }) => {
   const styles = winning ? { backgroundColor: "#00B073" } : null;
   return (
     <div className="eventDetail-team">
@@ -24,4 +25,10 @@ const DeatilTeam = ({ name, winning, score }) => {
   );
 };
 
-export default DeatilTeam;
+DetailTeam.propTypes = {
+  name: PropTypes.string,
+  winning: PropTypes.bool,
+  score: PropTypes.number
+};
+
+export default DetailTeam;

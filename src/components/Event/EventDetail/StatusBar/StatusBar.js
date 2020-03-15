@@ -2,6 +2,7 @@ import React from "react";
 import { Badge, Typography } from "antd";
 import { ClockCircleOutlined, CalendarFilled } from "@ant-design/icons";
 import Moment from "react-moment";
+import PropTypes from "prop-types";
 import "./StatusBar.css";
 
 const { Text } = Typography;
@@ -45,6 +46,15 @@ const StatusBar = ({ status, start, clock, matchPeriod }) => {
       </div>
     </div>
   );
+};
+
+StatusBar.propTypes = {
+  status: PropTypes.string,
+  start: PropTypes.string,
+  clock: PropTypes.shape({
+    stopped: PropTypes.bool
+  }),
+  matchPeriod: PropTypes.string
 };
 
 export default StatusBar;
