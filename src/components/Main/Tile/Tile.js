@@ -5,6 +5,7 @@ import Moment from "react-moment";
 import ContractItem from "./ContractItem";
 import "./Tile.css";
 import LeageBreadcrumb from "../../shared/LeagueBreadcrumb";
+import PropTypes from "prop-types";
 const { Paragraph } = Typography;
 
 const Tile = props => {
@@ -56,11 +57,22 @@ const Tile = props => {
             )}
           </span>
         ) : (
-          <Badge status="success" text="Live" />
+          <Badge status="success" text={state.toUpperCase()} />
         )}
       </div>
     </div>
   );
+};
+
+Tile.propTypes = {
+  event: PropTypes.shape({
+    league: PropTypes.string,
+    HOME: PropTypes.object,
+    AWAY: PropTypes.object,
+    DRAW: PropTypes.object,
+    start: PropTypes.string,
+    state: PropTypes.string
+  })
 };
 
 export default Tile;
