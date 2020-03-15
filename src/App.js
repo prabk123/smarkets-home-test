@@ -6,7 +6,8 @@ import PopularEvents from "./components/PopularEvents";
 import Main from "./components/Main";
 import Event from "./components/Event";
 import { Layout } from "antd";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
+import NotFound from "./components/NotFound";
 const { Header, Sider, Content } = Layout;
 
 const App = () => {
@@ -21,8 +22,18 @@ const App = () => {
         </Sider>
         <Content className="content">
           <Switch>
-            <Route exact path="/" component={Main} />
-            <Route exact path="/events/:event_id" component={Event} />
+            <Route
+              exact
+              path="/"
+              component={() => <Redirect to="/sports/football" />}
+            />
+            <Route exact path="/sports/football" component={Main} />
+            <Route
+              exact
+              path="/sports/football/events/:event_id"
+              component={Event}
+            />
+            <Route render={NotFound} />
           </Switch>
         </Content>
         <Sider className="sider-right" width={350}>

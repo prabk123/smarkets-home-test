@@ -5,7 +5,7 @@ import "./HeaderBar.css";
 const NavHeader = () => {
   return (
     <div className="header-bar">
-      <Link to={"/"}>
+      <Link to="/sports/football">
         <img
           className="header-logo"
           src="https://smarkets.com/static/img/smarkets-logo.svg"

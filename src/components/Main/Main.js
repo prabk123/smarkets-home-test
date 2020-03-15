@@ -45,7 +45,7 @@ class Main extends Component {
     const eventsList = events.map((x, i) => {
       if (i > 0) {
         return (
-          <Link to={`/events/${x.id}`} key={x.id}>
+          <Link to={`/sports/football/events/${x.id}`} key={x.id}>
             <Tile event={x} />
           </Link>
         );
@@ -59,7 +59,9 @@ class Main extends Component {
             <FeatureTile
               event={feature}
               image={featuredImage}
-              onClick={() => this.props.history.push(`/events/${feature.id}`)}
+              onClick={() =>
+                this.props.history.push(`/sports/football/events/${feature.id}`)
+              }
             />
             {eventsList}
           </div>

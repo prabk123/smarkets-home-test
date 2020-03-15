@@ -11,7 +11,7 @@ const LeagueBreadcrumb = props => {
       separator={<RightOutlined style={props.style} />}
     >
       <Breadcrumb.Item style={props.style}>
-        <Link to="/">
+        <Link to="/sports/football">
           <span className="leagueBreadcrumb">FOOTBALL</span>
         </Link>
       </Breadcrumb.Item>
