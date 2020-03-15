@@ -39,7 +39,6 @@ const root = (state = DEFAULT_STATE, action) => {
       };
     case ADD_ERROR:
       let error = {};
-      console.log(action.error);
       switch (action.error.status) {
         case 400:
           error.status = 404;

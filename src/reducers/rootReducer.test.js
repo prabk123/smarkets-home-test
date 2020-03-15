@@ -5,7 +5,7 @@ import {
   RESET_SINGLE_EVENT
 } from "../actions/EventActions";
 import { ADD_ERROR, REMOVE_ERROR } from "../actions/ErrorActions";
-import root from "./root";
+import rootReducer from "./rootReducer";
 
 describe("Root Reducer", () => {
   const DEFAULT_STATE = {
@@ -16,7 +16,7 @@ describe("Root Reducer", () => {
   };
 
   it("Should return default state", () => {
-    const newState = root(DEFAULT_STATE, {});
+    const newState = rootReducer(DEFAULT_STATE, {});
     expect(newState).toEqual(DEFAULT_STATE);
   });
 
@@ -45,7 +45,7 @@ describe("Root Reducer", () => {
       data: expectedState.popularEvents,
       image: expectedState.featuredImage
     };
-    const newState = root(DEFAULT_STATE, action);
+    const newState = rootReducer(DEFAULT_STATE, action);
     expect(newState).toEqual(expectedState);
   });
 
@@ -57,7 +57,7 @@ describe("Root Reducer", () => {
       error: null
     };
     const action = { type: RESET_EVENTS };
-    const newState = root(DEFAULT_STATE, action);
+    const newState = rootReducer(DEFAULT_STATE, action);
     expect(newState).toEqual(expectedState);
   });
 
@@ -75,7 +75,7 @@ describe("Root Reducer", () => {
       type: GET_SINGLE_EVENT,
       event: expectedState.event
     };
-    const newState = root(DEFAULT_STATE, action);
+    const newState = rootReducer(DEFAULT_STATE, action);
     expect(newState).toEqual(expectedState);
   });
 
@@ -87,7 +87,7 @@ describe("Root Reducer", () => {
       error: null
     };
     const action = { type: RESET_SINGLE_EVENT };
-    const newState = root(DEFAULT_STATE, action);
+    const newState = rootReducer(DEFAULT_STATE, action);
     expect(newState).toEqual(expectedState);
   });
 
@@ -102,7 +102,7 @@ describe("Root Reducer", () => {
       }
     };
     const action = { type: ADD_ERROR, error: expectedState.error };
-    const newState = root(DEFAULT_STATE, action);
+    const newState = rootReducer(DEFAULT_STATE, action);
     expect(newState).toEqual(expectedState);
   });
 
@@ -114,7 +114,7 @@ describe("Root Reducer", () => {
       error: null
     };
     const action = { type: REMOVE_ERROR };
-    const newState = root(DEFAULT_STATE, action);
+    const newState = rootReducer(DEFAULT_STATE, action);
     expect(newState).toEqual(expectedState);
   });
 });
