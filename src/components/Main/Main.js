@@ -12,6 +12,9 @@ import { CloseCircleOutlined } from "@ant-design/icons";
 import PropTypes from "prop-types";
 import "./Main.css";
 
+const catDescription =
+  "Smarkets betting exchange allows you to bet with the best Football odds - thanks to our small margins and industry-low 2% commission - on all tournaments and competitions, including Premier League, La Liga, Europa League and Champions League.";
+
 class Main extends Component {
   componentDidMount() {
     this.props.removeError();
@@ -60,7 +63,7 @@ class Main extends Component {
     });
     return (
       <div className="container">
-        <CategoryInfo />
+        <CategoryInfo sport="Football" description={catDescription} />
         {events.length > 0 ? (
           <div className="eventList-view">
             <FeatureTile
