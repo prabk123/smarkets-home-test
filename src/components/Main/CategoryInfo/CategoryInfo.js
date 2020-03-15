@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 const { Title, Paragraph } = Typography;
 
 const CategoryInfo = ({ sport, description }) => {
+  if (!sport) return null;
   const style = {
     fontSize: "0.5em",
     verticalAlign: "0.2em",
@@ -13,11 +14,14 @@ const CategoryInfo = ({ sport, description }) => {
     color: "#EAC924"
   };
   return (
-    <div>
-      <Title style={{ color: "#fff" }} level={2}>
+    <div data-test="CategoryInfo">
+      <Title data-test="title" style={{ color: "#fff" }} level={2}>
         {sport} odds <StarFilled style={style} />
       </Title>
-      <Paragraph style={{ color: "#fff", maxWidth: 550, marginBottom: 40 }}>
+      <Paragraph
+        data-test="description"
+        style={{ color: "#fff", maxWidth: 550, marginBottom: 40 }}
+      >
         {description}
       </Paragraph>
     </div>
