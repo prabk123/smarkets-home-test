@@ -6,8 +6,9 @@ import "./ContractItem.css";
 const { Text } = Typography;
 
 const ContractItem = ({ item }) => {
+  if (!item) return null;
   return (
-    <div>
+    <div data-test="ContractItem">
       <Text className="tile-contract-name">{item.name}</Text>
       <Text className="tile-price-perc">
         {item.percent ? `${item.percent}%` : "-"}

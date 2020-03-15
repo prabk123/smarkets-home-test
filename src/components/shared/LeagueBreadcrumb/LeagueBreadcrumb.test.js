@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { findByTestAtrr } from "../../../utils";
+import { findByTestAtrr, checkProps } from "../../../utils";
 import { PureLeagueBreadcrumb as LeagueBreadcrumb } from "./LeagueBreadcrumb";
 
 const setUp = (props = {}) => {
@@ -61,6 +61,22 @@ describe("Breadcrumb Component", () => {
     it("Shoult NOT render component", () => {
       const wrapper = findByTestAtrr(component, "leagueBreadcrumb");
       expect(wrapper.length).toBe(0);
+    });
+  });
+
+  describe("Check PropTypes", () => {
+    it("Should not throw a warning", () => {
+      const expectedProps = {
+        history: {
+          push: () => {}
+        },
+        match: {},
+        location: {},
+        style: {},
+        league: "TEST LEAGUE"
+      };
+      const propsErr = checkProps(LeagueBreadcrumb, expectedProps);
+      expect(propsErr).toBeUndefined();
     });
   });
 });
