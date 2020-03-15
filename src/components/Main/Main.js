@@ -50,7 +50,7 @@ class Main extends Component {
   };
 
   render() {
-    const { events, featuredImage } = this.props;
+    const { events, featuredImage, history } = this.props;
     const feature = events[0];
     const eventsList = events.map((x, i) => {
       if (i > 0) {
@@ -64,7 +64,7 @@ class Main extends Component {
       }
     });
     return (
-      <div className="container">
+      <div className="container" data-test="Main">
         <CategoryInfo sport="Football" description={catDescription} />
         {events.length > 0 ? (
           <div className="eventList-view">
@@ -72,7 +72,7 @@ class Main extends Component {
               event={feature}
               image={featuredImage}
               onClick={() =>
-                this.props.history.push(`/sports/football/events/${feature.id}`)
+                history.push(`/sports/football/events/${feature.id}`)
               }
             />
             {eventsList}
