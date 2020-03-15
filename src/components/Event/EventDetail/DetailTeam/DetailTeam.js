@@ -8,16 +8,21 @@ const { Title } = Typography;
 const DetailTeam = ({ name, winning, score }) => {
   const styles = winning ? { backgroundColor: "#00B073" } : null;
   return (
-    <div className="eventDetail-team">
+    <div className="eventDetail-team" data-test="DetailTeam">
       {name ? (
-        <Title level={3} className="eventDetail-team-name">
+        <Title data-test="name" level={3} className="eventDetail-team-name">
           {name}
         </Title>
       ) : (
         <Skeleton.Input style={{ width: "300px" }} active />
       )}
       {score !== null ? (
-        <Title level={4} className="eventDetail-team-score" style={styles}>
+        <Title
+          data-test="score"
+          level={4}
+          className="eventDetail-team-score"
+          style={styles}
+        >
           {score}
         </Title>
       ) : null}
