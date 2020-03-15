@@ -22,16 +22,23 @@ const StatusBar = ({ status, start, clock, matchPeriod }) => {
     mins = +mins[0] * 60 + +mins[1];
   }
   return (
-    <div className="statusBar-root">
+    <div className="statusBar-root" data-test="StatusBar">
       {status ? (
         <span>
           <div className="statusBar-status">
-            <Badge status="success" text={status.toUpperCase()} />
+            <Badge
+              data-test="statusBadge"
+              status="success"
+              text={status.toUpperCase()}
+            />
           </div>
           {status === "live" ? (
             <div className="statusBar-runtime">
               <ClockCircleOutlined className="statusBar-runtime-blue" />
-              <Text className="statusBar-text statusBar-runtime-blue">
+              <Text
+                data-test="clock"
+                className="statusBar-text statusBar-runtime-blue"
+              >
                 {clock && clock.stopped ? matchPeriod : `${mins}'`}
               </Text>
             </div>
@@ -41,7 +48,9 @@ const StatusBar = ({ status, start, clock, matchPeriod }) => {
       <div className="statusBar-datetime">
         <CalendarFilled />
         <Text className="statusBar-text">
-          <Moment calendar={calendarStrings}>{start}</Moment>
+          <Moment data-test="date" calendar={calendarStrings}>
+            {start}
+          </Moment>
         </Text>
       </div>
     </div>
@@ -52,7 +61,8 @@ StatusBar.propTypes = {
   status: PropTypes.string,
   start: PropTypes.string,
   clock: PropTypes.shape({
-    stopped: PropTypes.bool
+    stopped: PropTypes.bool,
+    match_time: PropTypes.string
   }),
   matchPeriod: PropTypes.string
 };
