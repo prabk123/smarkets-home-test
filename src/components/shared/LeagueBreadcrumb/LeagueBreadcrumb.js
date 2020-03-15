@@ -2,6 +2,7 @@ import React from "react";
 import { Breadcrumb } from "antd";
 import { RightOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import "./LeagueBreadcrumb.css";
 
 const LeagueBreadcrumb = props => {
@@ -20,6 +21,11 @@ const LeagueBreadcrumb = props => {
       </Breadcrumb.Item>
     </Breadcrumb>
   );
+};
+
+LeagueBreadcrumb.propTypes = {
+  league: PropTypes.string,
+  style: PropTypes.object
 };
 
 export default LeagueBreadcrumb;
