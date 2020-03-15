@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 const { Paragraph, Text } = Typography;
 
 const FeatureTile = props => {
+  if (!props.event) return null;
   const styles = { fontSize: 10 };
   const { image, event } = props;
   const { league, HOME, AWAY, start, state } = event;
@@ -19,7 +20,11 @@ const FeatureTile = props => {
     date = start;
   }
   return (
-    <div className="eventList-feature" onClick={props.onClick}>
+    <div
+      data-test="FeatureTile"
+      className="eventList-feature"
+      onClick={props.onClick}
+    >
       <img
         className="eventList-feature-image"
         src={`https://${image}`}
@@ -29,27 +34,32 @@ const FeatureTile = props => {
         <div>
           <LeageBreadcrumb league={league} style={styles} />
           <div className="eventList-feature-title">
-            <Paragraph className="eventList-feature-team">
+            <Paragraph data-test="team" className="eventList-feature-team">
               {HOME.name}
             </Paragraph>
-            <Paragraph className="eventList-feature-team">
+            <Paragraph data-test="team" className="eventList-feature-team">
               {AWAY.name}
             </Paragraph>
           </div>
         </div>
         <div className="eventList-feature-pricing">
-          <Paragraph className="eventList-feature-contract">
+          <Paragraph
+            data-test="feature-team"
+            className="eventList-feature-contract"
+          >
             {HOME.name}
           </Paragraph>
           <div>
-            <Text className="eventList-feature-percent">
+            <Text data-test="percent" className="eventList-feature-percent">
               {HOME.percent ? `${HOME.percent}%` : "-"}
             </Text>
             {HOME.decimal ? (
-              <Text className="tile-price-dec">{HOME.decimal}</Text>
+              <Text data-test="decimal" className="tile-price-dec">
+                {HOME.decimal}
+              </Text>
             ) : null}
           </div>
-          <div>
+          <div data-test="status">
             {date ? (
               <span>
                 {diff < 24 ? (
@@ -90,7 +100,8 @@ FeatureTile.propTypes = {
     }),
     start: PropTypes.string,
     state: PropTypes.string
-  })
+  }),
+  onClick: PropTypes.func
 };
 
 export default FeatureTile;

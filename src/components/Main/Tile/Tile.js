@@ -21,24 +21,28 @@ const Tile = props => {
   }
   return (
     <div className="tile tile-background" data-test="Tile">
-      <LeageBreadcrumb league={league} style={styles} />
+      <LeageBreadcrumb league={league} style={styles} data-test="breadcrumb" />
       <div className="tile-teams">
-        <Paragraph className="tile-team">{HOME.name}</Paragraph>
-        <Paragraph className="tile-team">{AWAY.name}</Paragraph>
+        <Paragraph className="tile-team" data-test="team">
+          {HOME.name}
+        </Paragraph>
+        <Paragraph className="tile-team" data-test="team">
+          {AWAY.name}
+        </Paragraph>
       </div>
       <Row>
         <Col span={8} className="tile-content">
-          <ContractItem item={HOME} />
+          <ContractItem item={HOME} data-test="contract" />
         </Col>
         <Col span={8} className="tile-content">
-          <ContractItem item={DRAW} />
+          <ContractItem item={DRAW} data-test="contract" />
         </Col>
         <Col span={8} className="tile-content">
-          <ContractItem item={AWAY} />
+          <ContractItem item={AWAY} data-test="contract" />
         </Col>
       </Row>
       <Divider style={divderStyles} />
-      <div>
+      <div data-test="status">
         {date ? (
           <span>
             {diff < 24 ? (

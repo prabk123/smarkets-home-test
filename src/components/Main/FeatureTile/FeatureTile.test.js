@@ -1,38 +1,41 @@
 import React from "react";
 import { shallow } from "enzyme";
 import { findByTestAtrr, checkProps } from "../../../utils";
-import Tile from "./Tile";
+import FeatureTile from "./FeatureTile";
 
 const setUp = (props = {}) => {
-  const component = shallow(<Tile {...props} />);
+  const component = shallow(<FeatureTile {...props} />);
   return component;
 };
 
-describe("Tile Component", () => {
+describe("FeatureTile Component", () => {
   describe("Has Props", () => {
     let component;
+    let func;
     beforeEach(() => {
+      func = jest.fn();
       const props = {
+        image: "test-url",
         event: {
           league: "Test Leage",
           HOME: {
-            name: "Test Home"
+            name: "Test Home",
+            percent: "23.45",
+            decimal: "1.34"
           },
           AWAY: {
             name: "Test Away"
           },
-          DRAW: {
-            name: "Test Draw"
-          },
           start: String(new Date()),
           state: "Live"
-        }
+        },
+        onClick: func
       };
       component = setUp(props);
     });
 
-    it("Should render without errors", () => {
-      const wrapper = findByTestAtrr(component, "Tile");
+    it("Should render without any errors", () => {
+      const wrapper = findByTestAtrr(component, "FeatureTile");
       expect(wrapper.length).toBe(1);
     });
 
@@ -41,14 +44,31 @@ describe("Tile Component", () => {
       expect(wrapper.length).toBe(2);
     });
 
-    it("Should render 3 contracts", () => {
-      const wrapper = findByTestAtrr(component, "contract");
-      expect(wrapper.length).toBe(3);
+    it("Should render a featured team", () => {
+      const wrapper = findByTestAtrr(component, "feature-team");
+      expect(wrapper.length).toBe(1);
+    });
+
+    it("Should render a percent price", () => {
+      const wrapper = findByTestAtrr(component, "percent");
+      expect(wrapper.length).toBe(1);
+    });
+
+    it("Should render a decimal price", () => {
+      const wrapper = findByTestAtrr(component, "decimal");
+      expect(wrapper.length).toBe(1);
     });
 
     it("Should render a status bar", () => {
       const wrapper = findByTestAtrr(component, "status");
       expect(wrapper.length).toBe(1);
+    });
+
+    it("Should emit a callback on click event", () => {
+      const button = findByTestAtrr(component, "FeatureTile");
+      button.simulate("click");
+      const callback = func.mock.calls.length;
+      expect(callback).toBe(1);
     });
   });
 
@@ -57,9 +77,8 @@ describe("Tile Component", () => {
     beforeEach(() => {
       component = setUp();
     });
-
     it("Should NOT render", () => {
-      const wrapper = findByTestAtrr(component, "Tile");
+      const wrapper = findByTestAtrr(component, "FeatureTile");
       expect(wrapper.length).toBe(0);
     });
   });
@@ -75,14 +94,12 @@ describe("Tile Component", () => {
           AWAY: {
             name: "Test Away"
           },
-          DRAW: {
-            name: "Test Draw"
-          },
           start: String(new Date()),
           state: "Live"
-        }
+        },
+        onClick: () => {}
       };
-      const propsErr = checkProps(Tile, expectedProps);
+      const propsErr = checkProps(FeatureTile, expectedProps);
       expect(propsErr).toBeUndefined();
     });
   });
