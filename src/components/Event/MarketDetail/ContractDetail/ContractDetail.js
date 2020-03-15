@@ -8,14 +8,23 @@ const { Text } = Typography;
 
 const ContractDetail = props => {
   const { name, percent, decimal, outcome } = props;
+  if (!name) return null;
   return (
-    <div className="contractDetail-root">
-      <Text className="contract-name">{name}</Text>
+    <div className="contractDetail-root" data-test="ContractDetail">
+      <Text data-test="name" className="contract-name">
+        {name}
+      </Text>
       <div className="contract-prices">
-        <Text className="contract-perc">{percent ? `${percent}%` : "-"}</Text>
-        {decimal ? <Text className="contract-dec">{decimal}</Text> : null}
+        <Text data-test="percent" className="contract-perc">
+          {percent ? `${percent}%` : "-"}
+        </Text>
+        {decimal ? (
+          <Text data-test="decimal" className="contract-dec">
+            {decimal}
+          </Text>
+        ) : null}
       </div>
-      <Text className="contract-outcome">
+      <Text data-test="outcome" className="contract-outcome">
         {outcome === "winner" ? (
           <span className="winner">
             <StarFilled className="winner-star" />
