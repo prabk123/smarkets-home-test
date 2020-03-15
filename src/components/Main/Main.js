@@ -3,6 +3,7 @@ import CategoryInfo from "./CategoryInfo";
 import { connect } from "react-redux";
 import { Skeleton } from "antd";
 import { getEvents, resetEvents } from "../../actions/EventActions";
+import { removeError } from "../../actions/ErrorActions";
 import Tile from "./Tile";
 import FeatureTile from "./FeatureTile";
 import { Link } from "react-router-dom";
@@ -12,6 +13,7 @@ import "./Main.css";
 
 class Main extends Component {
   componentDidMount() {
+    this.props.removeError();
     this.props.getEvents();
   }
 
@@ -19,17 +21,21 @@ class Main extends Component {
     const { error } = this.props;
     if (error) {
       this.handleError();
+    } else {
+      this.props.removeError();
     }
   }
 
   componentWillUnmount() {
+    notification.destroy();
     this.props.resetEvents();
   }
 
   handleError = () => {
     if (this.props.error) {
       notification.open({
-        message: this.props.error.message,
+        message: `${this.props.error.status} Error`,
+        description: this.props.error.message,
         duration: null,
         style: {
           backgroundColor: "#00b073"
@@ -92,4 +98,8 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getEvents, resetEvents })(Main);
+export default connect(mapStateToProps, {
+  getEvents,
+  resetEvents,
+  removeError
+})(Main);

@@ -38,9 +38,35 @@ const root = (state = DEFAULT_STATE, action) => {
         event: action.event
       };
     case ADD_ERROR:
+      let error = {};
+      console.log(action.error);
+      switch (action.error.status) {
+        case 400:
+          error.status = 404;
+          error.message = "The page you're looking for doesn't exist.";
+          break;
+        case 404:
+          error.status = 404;
+          error.message = "The page you're looking for doesn't exist.";
+          break;
+        case 429:
+          error.status = 429;
+          error.message =
+            "This page has been accessed too many times. Please wait a minute and try again.";
+          break;
+        case 500:
+          error.status = 500;
+          error.message = "Internal server error.";
+          break;
+        default:
+          error.status = "No Internet Connection -";
+          error.message = "It seems you have lost internet connection.";
+          break;
+      }
+
       return {
         ...state,
-        error: action.error
+        error
       };
     case REMOVE_ERROR:
       return {

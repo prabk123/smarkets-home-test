@@ -10,8 +10,13 @@ const EventDetail = props => {
   let homeScore = null;
   let awayScore = null;
   if (event && event.state.scores) {
-    homeScore = event.state.scores.current[0];
-    awayScore = event.state.scores.current[1];
+    if (event.state.scores.current) {
+      homeScore = event.state.scores.current[0];
+      awayScore = event.state.scores.current[1];
+    } else {
+      homeScore = event.state.scores.full[0];
+      awayScore = event.state.scores.full[1];
+    }
   }
   return (
     <div>

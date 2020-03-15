@@ -198,14 +198,15 @@ export const getSingleEvent = eventId => {
         event.markets[idx].contracts.push(contract);
       });
 
-      event.home = event.name.split(" vs ")[0];
-      event.away = event.name.split(" vs ")[1];
+      let eventNames = event.name.split(" vs ");
+      if (eventNames.length === 1) eventNames = event.name.split(" vs. ");
+      event.home = eventNames[0];
+      event.away = eventNames[1];
 
       dispatch(handleSingleEvent(event));
       dispatch(removeError());
     } catch (err) {
-      console.log(err);
-      dispatch(addError(err.error_type ? err.error_type : err));
+      dispatch(addError(err.response ? err.response : err));
     }
   };
 };
