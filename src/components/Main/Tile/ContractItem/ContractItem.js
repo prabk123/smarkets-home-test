@@ -1,5 +1,6 @@
 import React from "react";
 import { Typography } from "antd";
+import PropTypes from "prop-types";
 import "./ContractItem.css";
 
 const { Text } = Typography;
@@ -16,6 +17,13 @@ const ContractItem = ({ item }) => {
       ) : null}
     </div>
   );
+};
+
+ContractItem.propTypes = {
+  item: PropTypes.shape({
+    percent: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    decimal: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  })
 };
 
 export default ContractItem;
