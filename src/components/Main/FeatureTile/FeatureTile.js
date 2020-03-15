@@ -1,9 +1,10 @@
 import React from "react";
-import { Breadcrumb, Typography, Badge } from "antd";
-import { RightOutlined, CalendarFilled } from "@ant-design/icons";
+import { Typography, Badge } from "antd";
+import { CalendarFilled } from "@ant-design/icons";
 import Moment from "react-moment";
 import "./FeatureTile.css";
 import LeageBreadcrumb from "../../shared/LeagueBreadcrumb";
+import PropTypes from "prop-types";
 
 const { Paragraph, Text } = Typography;
 
@@ -19,7 +20,11 @@ const FeatureTile = props => {
   }
   return (
     <div className="eventList-feature" onClick={props.onClick}>
-      <img className="eventList-feature-image" src={`https://${image}`} />
+      <img
+        className="eventList-feature-image"
+        src={`https://${image}`}
+        alt="Feature Tile"
+      />
       <div className="eventList-feature-content">
         <div>
           <LeageBreadcrumb league={league} style={styles} />
@@ -71,6 +76,21 @@ const FeatureTile = props => {
       </div>
     </div>
   );
+};
+
+FeatureTile.propTypes = {
+  image: PropTypes.string,
+  event: PropTypes.shape({
+    league: PropTypes.string,
+    HOME: PropTypes.shape({
+      name: PropTypes.string
+    }),
+    AWAY: PropTypes.shape({
+      name: PropTypes.string
+    }),
+    start: PropTypes.string,
+    state: PropTypes.string
+  })
 };
 
 export default FeatureTile;

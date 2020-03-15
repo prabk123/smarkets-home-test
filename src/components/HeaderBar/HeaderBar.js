@@ -9,6 +9,7 @@ const NavHeader = () => {
         <img
           className="header-logo"
           src="https://smarkets.com/static/img/smarkets-logo.svg"
+          alt="Header Logo"
         />
       </Link>
       <div>

@@ -1,7 +1,6 @@
 import React from "react";
 import { Breadcrumb } from "antd";
 import { RightOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import "./LeagueBreadcrumb.css";

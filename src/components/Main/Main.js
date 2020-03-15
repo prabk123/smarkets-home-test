@@ -59,6 +59,8 @@ class Main extends Component {
             <Tile event={x} />
           </Link>
         );
+      } else {
+        return null;
       }
     });
     return (
