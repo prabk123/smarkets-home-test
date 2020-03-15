@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 const { Paragraph } = Typography;
 
 const Tile = props => {
+  if (!props.event) return null;
   const styles = { fontSize: 9 };
   const divderStyles = { margin: "0px", marginTop: "7px" };
   const { league, HOME, AWAY, DRAW, start, state } = props.event;
@@ -19,7 +20,7 @@ const Tile = props => {
     date = start;
   }
   return (
-    <div className="tile tile-background">
+    <div className="tile tile-background" data-test="Tile">
       <LeageBreadcrumb league={league} style={styles} />
       <div className="tile-teams">
         <Paragraph className="tile-team">{HOME.name}</Paragraph>
