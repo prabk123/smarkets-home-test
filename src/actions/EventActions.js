@@ -22,11 +22,11 @@ const handleSingleEvent = event => {
 };
 
 export const resetEvents = () => {
-  return { type: RESET_EVENTS, data: [], image: null };
+  return { type: RESET_EVENTS };
 };
 
 export const resetSingleEvent = () => {
-  return { type: RESET_SINGLE_EVENT, event: null };
+  return { type: RESET_SINGLE_EVENT };
 };
 
 export const getEvents = () => {

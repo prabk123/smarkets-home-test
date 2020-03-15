@@ -29,13 +29,13 @@ const root = (state = DEFAULT_STATE, action) => {
     case RESET_EVENTS:
       return {
         ...state,
-        popularEvents: action.data,
-        featuredImage: action.image
+        popularEvents: [],
+        featuredImage: null
       };
     case RESET_SINGLE_EVENT:
       return {
         ...state,
-        event: action.event
+        event: null
       };
     case ADD_ERROR:
       let error = {};
