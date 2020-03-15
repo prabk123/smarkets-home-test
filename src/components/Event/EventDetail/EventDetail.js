@@ -4,6 +4,7 @@ import "./EventDetail.css";
 import LeageBreadcrumb from "../../shared/LeagueBreadcrumb";
 import { Divider, Skeleton } from "antd";
 import StatusBar from "./StatusBar";
+import PropTypes from "prop-types";
 
 const EventDetail = props => {
   const { event } = props;
@@ -53,6 +54,22 @@ const EventDetail = props => {
       )}
     </div>
   );
+};
+
+EventDetail.propTypes = {
+  event: PropTypes.shape({
+    home: PropTypes.string,
+    away: PropTypes.string,
+    state: PropTypes.shape({
+      state: PropTypes.string,
+      start_datetime: PropTypes.string,
+      clock: PropTypes.object,
+      match_period: PropTypes.string,
+      scores: PropTypes.shape({
+        current: PropTypes.array
+      })
+    })
+  })
 };
 
 export default EventDetail;
