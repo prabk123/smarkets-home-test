@@ -4,15 +4,16 @@ import "./HeaderBar.css";
 
 const NavHeader = () => {
   return (
-    <div className="header-bar">
+    <div className="header-bar" data-test="HeaderBar">
       <Link to="/sports/football">
         <img
+          data-test="image"
           className="header-logo"
           src="https://smarkets.com/static/img/smarkets-logo.svg"
           alt="Header Logo"
         />
       </Link>
-      <div>
+      <div data-test="info">
         <div className="header-title">PRABODH KAKODKAR</div>
         <div className="header-meta">TAKE HOME TEST</div>
       </div>
