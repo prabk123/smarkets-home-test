@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import MarketDetail from "./MarketDetail";
 import { notification } from "antd";
 import { CloseCircleOutlined } from "@ant-design/icons";
+import PropTypes from "prop-types";
 
 class Event extends Component {
   componentDidMount() {
@@ -59,6 +60,28 @@ class Event extends Component {
     );
   }
 }
+
+Event.propTypes = {
+  error: PropTypes.shape({
+    status: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    message: PropTypes.string
+  }),
+  event: PropTypes.shape({
+    markets: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string,
+        name: PropTypes.string,
+        contracts: PropTypes.array
+      })
+    )
+  }),
+  getSingleEvent: PropTypes.func,
+  resetSingleEvent: PropTypes.func,
+  removeError: PropTypes.func,
+  match: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
+};
 
 const mapStateToProps = state => {
   return { event: state.event, error: state.error };
