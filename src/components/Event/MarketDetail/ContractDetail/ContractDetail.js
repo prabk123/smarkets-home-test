@@ -1,6 +1,7 @@
 import React from "react";
 import { Typography } from "antd";
 import { StarFilled } from "@ant-design/icons";
+import PropTypes from "prop-types";
 import "./ContractDetail.css";
 
 const { Text } = Typography;
@@ -26,6 +27,13 @@ const ContractDetail = props => {
       </Text>
     </div>
   );
+};
+
+ContractDetail.propTypes = {
+  name: PropTypes.string,
+  percent: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  decimal: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  outcome: PropTypes.string
 };
 
 export default ContractDetail;

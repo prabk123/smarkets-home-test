@@ -2,6 +2,7 @@ import React from "react";
 import { Collapse, Typography, Divider } from "antd";
 import "./MarketDetail.css";
 import ContractDetail from "./ContractDetail";
+import PropTypes from "prop-types";
 
 const { Panel } = Collapse;
 const { Title, Text } = Typography;
@@ -34,6 +35,19 @@ const MarketDetail = props => {
       </Panel>
     </Collapse>
   );
+};
+
+MarketDetail.propTypes = {
+  title: PropTypes.string,
+  contracts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      percent: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      decimal: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      outcome: PropTypes.string
+    })
+  )
 };
 
 export default MarketDetail;
