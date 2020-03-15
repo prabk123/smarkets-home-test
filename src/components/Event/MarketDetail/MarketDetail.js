@@ -10,11 +10,13 @@ const { Title, Text } = Typography;
 const MarketDetail = props => {
   const dividerStyle = { margin: 0 };
   const { title, contracts } = props;
+  if (!title) return null;
   return (
     <Collapse
       className="market-panel"
       defaultActiveKey={title === "Full-time result" ? ["1"] : null}
       expandIconPosition={"right"}
+      data-test="MarketDetail"
     >
       <Panel header={<Title level={3}>{title}</Title>} key="1">
         <div className="market-panel-header">
