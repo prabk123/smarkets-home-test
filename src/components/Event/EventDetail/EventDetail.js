@@ -1,6 +1,5 @@
 import React from "react";
 import DetailTeam from "./DetailTeam";
-import "./EventDetail.css";
 import LeageBreadcrumb from "../../shared/LeagueBreadcrumb";
 import { Divider, Skeleton } from "antd";
 import StatusBar from "./StatusBar";
