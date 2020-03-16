@@ -9,6 +9,7 @@ Start the application by running the following commands:
 
 ```zsh
 $ git clone git@github.com:prabk123/smarkets-home-test.git
+$ cd smarkets-home-test
 $ npm install
 $ npm start
 ```
