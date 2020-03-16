@@ -6,7 +6,6 @@ export const GET_SINGLE_EVENT = "GET_SINGLE_EVENT";
 export const RESET_EVENTS = "RESET_EVENTS";
 export const RESET_SINGLE_EVENT = "RESET_SINGLE_EVENT";
 
-// Headers to allow CORS - https://cors-anywhere.herokuapp.com/ seemed to significantly slow down API response
 const config = {
   headers: {
     "Access-Control-Allow-Origin": "*",
