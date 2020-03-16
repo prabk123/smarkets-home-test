@@ -6,6 +6,7 @@ export const GET_SINGLE_EVENT = "GET_SINGLE_EVENT";
 export const RESET_EVENTS = "RESET_EVENTS";
 export const RESET_SINGLE_EVENT = "RESET_SINGLE_EVENT";
 
+// Headers to allow CORS - https://cors-anywhere.herokuapp.com/ seemed to significantly slow down API response
 const config = {
   headers: {
     "Access-Control-Allow-Origin": "*",
@@ -34,6 +35,7 @@ export const getEvents = () => {
     try {
       var data = [];
       // Perfom all API calls & Organise data as required
+      // Designed specifically for the Football category (Will not work with all other categories)
       const popularIds = await axios.get(
         `/v3/popular/event_ids/sport/football/`,
         config
@@ -148,6 +150,8 @@ export const getEvents = () => {
 export const getSingleEvent = eventId => {
   return async dispatch => {
     try {
+      // Perfom all API calls & Organise data as required
+      // Designed specifically for a Football event (Will not work with all other event categories)
       const eventsData = await axios.get(`/v3/events/${eventId}/`, config);
       let event = eventsData.data.events[0];
 
