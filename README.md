@@ -2,7 +2,7 @@
 
 By [Prabodh Kakodkar](mailto:prabodhkakodkar@gmail.com) | [prabodhkakodkar.com](https://www.prabodhkakodkar.com)
 
-## Intsallation Intructions
+## Installation Intructions
 
 Navigate to [https://github.com/prabk123/smarkets-home-test](https://github.com/prabk123/smarkets-home-test)
 Start the application by running the following commands:
